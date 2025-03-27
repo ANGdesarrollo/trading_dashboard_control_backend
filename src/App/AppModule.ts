@@ -2,10 +2,11 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
 import { AuthModule } from '../Auth/AuthModule';
+import { OperationModule } from '../Operation/OperationModule';
 import { SharedModule } from '../Shared/SharedModule';
+import { SymbolModule } from '../Symbol/SymbolModule';
 
 import { AppController } from './Presentation/AppController';
-import { OperationModule } from '../Operation/OperationModule';
 
 @Module({
   imports: [
@@ -14,7 +15,8 @@ import { OperationModule } from '../Operation/OperationModule';
     }),
     SharedModule,
     AuthModule,
-    OperationModule
+    OperationModule,
+    SymbolModule
   ],
   controllers: [AppController]
 })

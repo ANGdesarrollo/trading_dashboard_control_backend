@@ -1,0 +1,8 @@
+model Storage {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  // Add your entity fields here
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  @@map("storages")
+}

@@ -1,10 +1,9 @@
 // src/Symbol/Presentation/Dtos/SymbolDto.ts
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsString, MaxLength } from 'class-validator';
 
 export class SymbolDto {
   @IsString()
   @IsNotEmpty()
+  @MaxLength(10)
   name: string;
-
-  // Add your DTO fields here with appropriate decorators
 }

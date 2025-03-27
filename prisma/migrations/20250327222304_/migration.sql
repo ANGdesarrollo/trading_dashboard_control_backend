@@ -5,6 +5,22 @@ CREATE TYPE "TradeType" AS ENUM ('LONG', 'SHORT');
 CREATE TYPE "Result" AS ENUM ('WON', 'LOST', 'BE');
 
 -- CreateTable
+CREATE TABLE "operation" (
+    "id" UUID NOT NULL,
+    "symbolId" UUID NOT NULL,
+    "type" "TradeType" NOT NULL,
+    "pips" INTEGER NOT NULL,
+    "imagePath" VARCHAR(255) NOT NULL,
+    "result" "Result" NOT NULL,
+    "description" VARCHAR(255),
+    "date" TIMESTAMP(3) NOT NULL,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "operation_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "permissions" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "name" VARCHAR(50) NOT NULL,
@@ -27,6 +43,16 @@ CREATE TABLE "roles" (
 );
 
 -- CreateTable
+CREATE TABLE "symbols" (
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "name" VARCHAR(10) NOT NULL,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "symbols_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "tenants" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "name" VARCHAR(15) NOT NULL,
@@ -34,22 +60,6 @@ CREATE TABLE "tenants" (
     "updated_at" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "tenants_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "trading" (
-    "id" UUID NOT NULL,
-    "symbol" VARCHAR(10) NOT NULL,
-    "type" "TradeType" NOT NULL,
-    "pips" INTEGER NOT NULL,
-    "imagePath" VARCHAR(255) NOT NULL,
-    "result" "Result" NOT NULL,
-    "description" VARCHAR(255),
-    "date" TIMESTAMP(3) NOT NULL,
-    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "trading_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -96,6 +106,9 @@ CREATE UNIQUE INDEX "permissions_name_key" ON "permissions"("name");
 CREATE UNIQUE INDEX "roles_name_key" ON "roles"("name");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "symbols_name_key" ON "symbols"("name");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "users_username_key" ON "users"("username");
 
 -- CreateIndex
@@ -106,6 +119,9 @@ CREATE INDEX "_user_roles_B_index" ON "_user_roles"("B");
 
 -- CreateIndex
 CREATE INDEX "_user_tenants_B_index" ON "_user_tenants"("B");
+
+-- AddForeignKey
+ALTER TABLE "operation" ADD CONSTRAINT "operation_symbolId_fkey" FOREIGN KEY ("symbolId") REFERENCES "symbols"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_role_permissions" ADD CONSTRAINT "_role_permissions_A_fkey" FOREIGN KEY ("A") REFERENCES "permissions"("id") ON DELETE CASCADE ON UPDATE CASCADE;
