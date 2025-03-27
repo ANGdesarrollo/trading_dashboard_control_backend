@@ -1,0 +1,26 @@
+model Trading {
+  id          String    @id @default(uuid()) @db.Uuid
+  symbol      String    @db.VarChar(10)
+  type        TradeType
+  pips        Int
+  imagePath   String    @db.VarChar(255)
+  result      Result
+  description String?   @db.VarChar(255)
+  date        DateTime
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+
+  @@map("trading")
+}
+
+
+enum TradeType {
+  LONG
+  SHORT
+}
+
+enum Result {
+  WON
+  LOST
+  BE
+}
