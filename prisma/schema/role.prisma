@@ -1,0 +1,12 @@
+model Role {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name        String   @unique @db.VarChar(50)
+  description String?  @db.VarChar(255)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  users       User[]       @relation("user_roles")
+  permissions Permission[] @relation("role_permissions")
+
+  @@map("roles")
+}

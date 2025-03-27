@@ -1,0 +1,10 @@
+model Tenant {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name       String   @db.VarChar(15)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  users User[] @relation("user_tenants")
+
+  @@map("tenants")
+}
