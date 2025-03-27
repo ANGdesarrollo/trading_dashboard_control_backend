@@ -1,6 +1,6 @@
 model Operation {
   id          String    @id @default(uuid()) @db.Uuid
-  symbol      String    @db.VarChar(10)
+  symbolId    String    @db.Uuid
   type        TradeType
   pips        Int
   imagePath   String    @db.VarChar(255)
@@ -9,6 +9,8 @@ model Operation {
   date        DateTime
   created_at  DateTime  @default(now())
   updated_at  DateTime  @updatedAt
+
+  symbol      Symbol    @relation(fields: [symbolId], references: [id])
 
   @@map("operation")
 }

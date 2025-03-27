@@ -7,7 +7,7 @@ import { PrismaService } from './DatabaseService';
 @Injectable()
 export abstract class BasePrismaRepositoryImpl<D, T> implements BaseRepository<D, T>
 {
-  private readonly entityName: string;
+  protected readonly entityName: string;
   protected repository: PrismaService;
 
   private readonly logger = new Logger(BasePrismaRepositoryImpl.name);
@@ -105,7 +105,7 @@ export abstract class BasePrismaRepositoryImpl<D, T> implements BaseRepository<D
     });
   }
 
-  private handlePrismaError(error: any, operation: string): never
+  protected handlePrismaError(error: any, operation: string): never
   {
     const message = `[${this.entityName}] Failed to execute ${operation}: ${error.message}`;
     this.logger.error(message);

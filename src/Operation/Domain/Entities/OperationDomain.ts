@@ -13,7 +13,11 @@ export enum Result {
 
 export interface OperationDomain extends BaseDomain {
   id: string;
-  symbol: string;
+  symbolId: string;
+  symbol?: {
+    id: string;
+    name: string;
+  };
   type: TradeType;
   pips: number;
   imagePath: string;

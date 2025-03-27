@@ -3,7 +3,11 @@ import { Result, TradeType } from './OperationDomain';
 export class Operation
 {
   public id: string;
-  public symbol: string;
+  public symbolId: string;
+  public symbol?: {
+    id: string;
+    name: string;
+  };
   public type: TradeType;
   public pips: number;
   public imagePath: string;
@@ -13,16 +17,21 @@ export class Operation
 
   constructor(
     id: string,
-    symbol: string,
+    symbolId: string,
     type: TradeType,
     pips: number,
     imagePath: string,
     result: Result,
     date: Date,
-    description?: string
+    description?: string,
+    symbol?: {
+      id: string;
+      name: string;
+    }
   )
 {
     this.id = id;
+    this.symbolId = symbolId;
     this.symbol = symbol;
     this.type = type;
     this.pips = pips;

@@ -1,14 +1,13 @@
 // src/Operation/Presentation/Dtos/OperationDto.ts
 import { Type } from 'class-transformer';
-import { IsDate, IsEnum, IsInt, IsNotEmpty, IsOptional, IsString, Min } from 'class-validator';
+import { IsDate, IsEnum, IsInt, IsNotEmpty, IsOptional, IsString, IsUUID, Min } from 'class-validator';
 
 import { Result, TradeType } from '../../Domain/Entities/OperationDomain';
 
-export class OperationDto
-{
-  @IsString()
+export class OperationDto {
+  @IsUUID()
   @IsNotEmpty()
-  symbol: string;
+  symbolId: string; // Changed from symbol: string
 
   @IsEnum(TradeType)
   @IsNotEmpty()
