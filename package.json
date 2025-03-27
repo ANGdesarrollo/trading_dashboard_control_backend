@@ -8,6 +8,7 @@
   "scripts": {
     "build": "rm -rf dist && swc src/** --strip-leading-paths 1 -d dist",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "migrate:dev": "npx prisma migrate dev",
     "start:dev": "nest start -b swc -w --type-check --outDir src",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
@@ -39,6 +40,7 @@
   "devDependencies": {
     "@faker-js/faker": "^9.3.0",
     "@nestjs/cli": "^10.0.0",
+    "@nestjs/mapped-types": "^2.1.0",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
     "@swc/cli": "^0.5.2",

@@ -5,6 +5,7 @@ import { AuthModule } from '../Auth/AuthModule';
 import { SharedModule } from '../Shared/SharedModule';
 
 import { AppController } from './Presentation/AppController';
+import { TradingModule } from '../Trading/TradingModule';
 
 @Module({
   imports: [
@@ -12,7 +13,8 @@ import { AppController } from './Presentation/AppController';
       isGlobal: true
     }),
     SharedModule,
-    AuthModule
+    AuthModule,
+    TradingModule
   ],
   controllers: [AppController]
 })
