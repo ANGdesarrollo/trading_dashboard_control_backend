@@ -17,7 +17,22 @@ module.exports = {
   },
   ignorePatterns: ['.eslintrc.js', 'dist', 'node_modules', 'scripts'],
   rules: {
-    'indent': 'off',
+    'brace-style': ['error', 'allman', { allowSingleLine: true }],
+    'indent': ['error', 2, {
+      SwitchCase: 1,
+      VariableDeclarator: 1,
+      outerIIFEBody: 1,
+      MemberExpression: 1,
+      FunctionDeclaration: { body: 1, parameters: 1 },
+      FunctionExpression: { body: 1, parameters: 1 },
+      CallExpression: { arguments: 1 },
+      ArrayExpression: 1,
+      ObjectExpression: 1,
+      ImportDeclaration: 1,
+      flatTernaryExpressions: false,
+      offsetTernaryExpressions: true,
+      ignoreComments: false
+    }],
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
@@ -38,7 +53,6 @@ module.exports = {
     'linebreak-style': ['error', 'unix'],
     'padded-blocks': ['error', 'never'],
     'eol-last': ['error', 'always'],
-    'brace-style': ['error', 'allman', { allowSingleLine: true }],
     'prefer-const': ['warn'],
     'max-len': [
       'warn',

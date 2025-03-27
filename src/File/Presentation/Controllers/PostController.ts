@@ -10,10 +10,9 @@ import { FastifyRequest } from 'fastify';
 
 import { UploadFileUseCase } from '../../Application/UploadFileUseCase';
 import { FileDomain } from '../../Domain/Entities/FileDomain';
-import { FileDto } from '../Dtos/FileDto';
 import { UploadFileDto } from '../Dtos/UploadFileDto';
 
-@Controller('storage')
+@Controller('file')
 export class PostController
 {
   constructor(
@@ -26,7 +25,7 @@ export class PostController
     @Req() request: FastifyRequest,
     @Body('isPublic') isPublic?: string
   ): Promise<FileDomain>
-{
+  {
     const data = await request.file({
       limits: {
         fileSize: 10 * 1024 * 1024
@@ -34,7 +33,7 @@ export class PostController
     });
 
     if (!data)
-{
+    {
       throw new Error('No file uploaded');
     }
 

@@ -5,12 +5,14 @@ import { SymbolDomain } from '../../Domain/Entities/SymbolDomain';
 import { SymbolDto } from '../Dtos/SymbolDto';
 
 @Controller('symbol')
-export class PostController {
+export class PostController
+{
   constructor(private readonly createSymbolUseCase: CreateSymbolUseCase) {}
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  create(@Body() body: SymbolDto): Promise<SymbolDomain> {
+  create(@Body() body: SymbolDto): Promise<SymbolDomain>
+  {
     return this.createSymbolUseCase.execute(body);
   }
 }

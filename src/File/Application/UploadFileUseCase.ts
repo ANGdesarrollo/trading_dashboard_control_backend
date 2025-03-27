@@ -16,7 +16,7 @@ export class UploadFileUseCase
   ) {}
 
   async execute(dto: UploadFileDto): Promise<FileDomain>
-{
+  {
     // Generate a unique file name
     const fileName = this.fileService.generateFileName(dto.originalName);
 

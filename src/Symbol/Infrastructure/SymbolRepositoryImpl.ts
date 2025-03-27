@@ -8,8 +8,10 @@ import { SymbolDto } from '../Presentation/Dtos/SymbolDto';
 import { SymbolRepository } from './SymbolRepository';
 
 @Injectable()
-export class SymbolRepositoryImpl extends BasePrismaRepositoryImpl<SymbolDto, SymbolDomain> implements SymbolRepository {
-  constructor(prisma: PrismaService) {
+export class SymbolRepositoryImpl extends BasePrismaRepositoryImpl<SymbolDto, SymbolDomain> implements SymbolRepository
+{
+  constructor(prisma: PrismaService)
+  {
     super(prisma, 'symbol');
   }
 }

@@ -4,29 +4,29 @@ export class FileDto
 {
   @IsString()
   @IsNotEmpty()
-  fileName: string;
+    fileName: string;
 
   @IsString()
   @IsNotEmpty()
-  originalName: string;
+    originalName: string;
 
   @IsString()
   @IsNotEmpty()
-  path: string;
+    path: string;
 
   @IsString()
   @IsNotEmpty()
-  mimeType: string;
+    mimeType: string;
 
   @IsNumber()
   @IsNotEmpty()
-  size: number;
+    size: number;
 
   @IsBoolean()
   @IsOptional()
-  isPublic?: boolean = true;
+    isPublic?: boolean = true;
 
   @IsUrl()
   @IsOptional()
-  url?: string;
+    url?: string;
 }

@@ -1,18 +1,19 @@
 import { IsBoolean, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
-export class UploadFileDto {
+export class UploadFileDto
+{
   @IsNotEmpty()
-  buffer: Buffer;
+    buffer: Buffer;
 
   @IsString()
   @IsNotEmpty()
-  originalName: string;
+    originalName: string;
 
   @IsString()
   @IsOptional()
-  mimeType?: string;
+    mimeType?: string;
 
   @IsBoolean()
   @IsOptional()
-  isPublic?: boolean = true;
+    isPublic?: boolean = true;
 }

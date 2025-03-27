@@ -29,7 +29,7 @@ export class Operation
       name: string;
     }
   )
-{
+  {
     this.id = id;
     this.symbolId = symbolId;
     this.symbol = symbol;

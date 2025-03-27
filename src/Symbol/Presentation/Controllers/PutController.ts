@@ -5,7 +5,8 @@ import { SymbolDomain } from '../../Domain/Entities/SymbolDomain';
 import { UpdateSymbolDto } from '../Dtos/UpdateSymbolDto';
 
 @Controller('symbol')
-export class PutController {
+export class PutController
+{
   constructor(private readonly updateSymbolUseCase: UpdateSymbolUseCase) {}
 
   @Put(':id')
@@ -13,7 +14,8 @@ export class PutController {
   update(
     @Param('id', ParseUUIDPipe) id: string,
     @Body() body: UpdateSymbolDto
-  ): Promise<SymbolDomain> {
+  ): Promise<SymbolDomain>
+  {
     return this.updateSymbolUseCase.execute(id, body);
   }
 }

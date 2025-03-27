@@ -1,5 +1,5 @@
-import { Body, Controller, HttpCode, HttpStatus, Post, Req, Res } from '@nestjs/common';
-import { FastifyReply, FastifyRequest } from 'fastify';
+import { Body, Controller, HttpCode, HttpStatus, Post, Res } from '@nestjs/common';
+import { FastifyReply } from 'fastify';
 
 import { LoginUserUseCase } from '../../Application/LoginUserUseCase';
 import { RegisterUserUseCase } from '../../Application/RegisterUserUseCase';

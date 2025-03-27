@@ -46,9 +46,9 @@ describe('Auth E2E', () =>
     {
       const payload: LoginUserDto =
         {
-        username: userCredentials.username,
-        password: userCredentials.password
-      };
+          username: userCredentials.username,
+          password: userCredentials.password
+        };
 
       const response = await agent.post('/api/auth/login').send(payload);
 

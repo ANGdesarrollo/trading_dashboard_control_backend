@@ -11,19 +11,24 @@ let app: NestFastifyApplication;
 let symbolId: string;
 let symbolData: SymbolDto;
 
-describe('Symbol E2E', () => {
-  beforeAll(async() => {
+describe('Symbol E2E', () =>
+{
+  beforeAll(async() =>
+  {
     const testAgent = await getTestAgent(SymbolModule);
     agent = testAgent.agent;
     app = testAgent.app;
   });
 
-  afterAll(async() => {
+  afterAll(async() =>
+  {
     await app.close();
   });
 
-  describe('Create Symbol', () => {
-    it('POST /symbol', async() => {
+  describe('Create Symbol', () =>
+  {
+    it('POST /symbol', async() =>
+    {
       symbolData = {
         exampleField: 'Example value'
         // Add test data for your entity
@@ -37,8 +42,10 @@ describe('Symbol E2E', () => {
     });
   });
 
-  describe('Get Symbol', () => {
-    it('GET /symbol', async() => {
+  describe('Get Symbol', () =>
+  {
+    it('GET /symbol', async() =>
+    {
       const response = await agent.get('/api/symbol');
 
       expect(response.status).toBe(200);
@@ -46,7 +53,8 @@ describe('Symbol E2E', () => {
       expect(response.body.length).toBeGreaterThan(0);
     });
 
-    it('GET /symbol/:id', async() => {
+    it('GET /symbol/:id', async() =>
+    {
       const response = await agent.get(`/api/symbol/${symbolId}`);
 
       expect(response.status).toBe(200);
@@ -55,8 +63,10 @@ describe('Symbol E2E', () => {
     });
   });
 
-  describe('Update Symbol', () => {
-    it('PUT /symbol/:id', async() => {
+  describe('Update Symbol', () =>
+  {
+    it('PUT /symbol/:id', async() =>
+    {
       const updateData = {
         exampleField: 'Updated value'
       };
@@ -68,8 +78,10 @@ describe('Symbol E2E', () => {
     });
   });
 
-  describe('Delete Symbol', () => {
-    it('DELETE /symbol/:id', async() => {
+  describe('Delete Symbol', () =>
+  {
+    it('DELETE /symbol/:id', async() =>
+    {
       const response = await agent.delete(`/api/symbol/${symbolId}`);
 
       expect(response.status).toBe(204);

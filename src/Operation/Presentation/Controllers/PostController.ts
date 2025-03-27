@@ -12,7 +12,7 @@ export class PostController
   @Post()
   @HttpCode(HttpStatus.CREATED)
   create(@Body() body: OperationDto): Promise<OperationDomain>
-{
+  {
     return this.createTradingUseCase.execute(body);
   }
 }

@@ -5,13 +5,16 @@ import { FileRepository } from '../Infrastructure/FileRepository';
 import { UpdateFileDto } from '../Presentation/Dtos/UpdateFileDto';
 
 @Injectable()
-export class UpdateFileUseCase {
+export class UpdateFileUseCase
+{
   constructor(private readonly repository: FileRepository) {}
 
-  async execute(id: string, payload: UpdateFileDto): Promise<FileDomain> {
+  async execute(id: string, payload: UpdateFileDto): Promise<FileDomain>
+  {
     const storage = await this.repository.findOneBy('id', id);
 
-    if (!storage) {
+    if (!storage)
+    {
       throw new NotFoundException(`Storage with id ${id} not found`);
     }
 

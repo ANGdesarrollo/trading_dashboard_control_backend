@@ -1,3 +1,4 @@
+import fastifyCookie from '@fastify/cookie';
 import { ConfigModule } from '@nestjs/config';
 import { ModuleDefinition } from '@nestjs/core/interfaces/module-definition.interface';
 import {
@@ -9,7 +10,6 @@ import request from 'supertest';
 import TestAgent from 'supertest/lib/agent';
 
 import { SharedModule } from '../src/Shared/SharedModule';
-import fastifyCookie from '@fastify/cookie';
 
 export type TestAgentType = { agent: TestAgent, app: NestFastifyApplication };
 

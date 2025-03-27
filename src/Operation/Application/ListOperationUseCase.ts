@@ -9,7 +9,7 @@ export class ListOperationUseCase
   constructor(private readonly repository: OperationRepository) {}
 
   async execute(): Promise<OperationDomain[]>
-{
+  {
     return this.repository.list();
   }
 }

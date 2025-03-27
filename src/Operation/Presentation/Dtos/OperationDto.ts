@@ -4,34 +4,35 @@ import { IsDate, IsEnum, IsInt, IsNotEmpty, IsOptional, IsString, IsUUID, Min } 
 
 import { Result, TradeType } from '../../Domain/Entities/OperationDomain';
 
-export class OperationDto {
+export class OperationDto
+{
   @IsUUID()
   @IsNotEmpty()
-  symbolId: string; // Changed from symbol: string
+    symbolId: string; // Changed from symbol: string
 
   @IsEnum(TradeType)
   @IsNotEmpty()
-  type: TradeType;
+    type: TradeType;
 
   @IsInt()
   @Min(0)
   @IsNotEmpty()
-  pips: number;
+    pips: number;
 
   @IsString()
   @IsNotEmpty()
-  imagePath: string;
+    imagePath: string;
 
   @IsEnum(Result)
   @IsNotEmpty()
-  result: Result;
+    result: Result;
 
   @IsString()
   @IsOptional()
-  description?: string;
+    description?: string;
 
   @IsDate()
   @Type(() => Date)
   @IsNotEmpty()
-  date: Date;
+    date: Date;
 }

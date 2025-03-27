@@ -15,7 +15,7 @@ export class PutController
     @Param('id', ParseUUIDPipe) id: string,
     @Body() body: UpdateOperationDto
   ): Promise<OperationDomain>
-{
+  {
     return this.updateTradingUseCase.execute(id, body);
   }
 }

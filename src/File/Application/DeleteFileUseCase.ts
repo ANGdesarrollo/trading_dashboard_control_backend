@@ -12,7 +12,7 @@ export class DeleteFileUseCase
     const storage = await this.repository.findOneBy('id', id);
 
     if (!storage)
-  {
+    {
       throw new NotFoundException(`Storage with id ${id} not found`);
     }
 

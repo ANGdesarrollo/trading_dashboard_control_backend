@@ -4,8 +4,9 @@ import { UpdateFileUseCase } from '../../Application/UpdateFileUseCase';
 import { FileDomain } from '../../Domain/Entities/FileDomain';
 import { UpdateFileDto } from '../Dtos/UpdateFileDto';
 
-@Controller('storage')
-export class PutController {
+@Controller('file')
+export class PutController
+{
   constructor(private readonly updateStorageUseCase: UpdateFileUseCase) {}
 
   @Put(':id')
@@ -13,7 +14,8 @@ export class PutController {
   update(
     @Param('id', ParseUUIDPipe) id: string,
     @Body() body: UpdateFileDto
-  ): Promise<FileDomain> {
+  ): Promise<FileDomain>
+  {
     return this.updateStorageUseCase.execute(id, body);
   }
 }

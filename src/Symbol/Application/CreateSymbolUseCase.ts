@@ -5,10 +5,12 @@ import { SymbolRepository } from '../Infrastructure/SymbolRepository';
 import { SymbolDto } from '../Presentation/Dtos/SymbolDto';
 
 @Injectable()
-export class CreateSymbolUseCase {
+export class CreateSymbolUseCase
+{
   constructor(private readonly repository: SymbolRepository) {}
 
-  async execute(payload: SymbolDto): Promise<SymbolDomain> {
+  async execute(payload: SymbolDto): Promise<SymbolDomain>
+  {
     return this.repository.create(payload);
   }
 }

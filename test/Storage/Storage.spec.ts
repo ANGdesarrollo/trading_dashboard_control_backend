@@ -2,8 +2,8 @@
 import { NestFastifyApplication } from '@nestjs/platform-fastify';
 import TestAgent from 'supertest/lib/agent';
 
-import { FileDto } from '../../src/File/Presentation/Dtos/FileDto';
 import { FileModule } from '../../src/File/FileModule';
+import { FileDto } from '../../src/File/Presentation/Dtos/FileDto';
 import { getTestAgent } from '../TestAgent';
 
 let agent: TestAgent;
@@ -11,19 +11,24 @@ let app: NestFastifyApplication;
 let storageId: string;
 let storageData: FileDto;
 
-describe('File E2E', () => {
-  beforeAll(async() => {
+describe('File E2E', () =>
+{
+  beforeAll(async() =>
+  {
     const testAgent = await getTestAgent(FileModule);
     agent = testAgent.agent;
     app = testAgent.app;
   });
 
-  afterAll(async() => {
+  afterAll(async() =>
+  {
     await app.close();
   });
 
-  describe('Create File', () => {
-    it('POST /storage', async() => {
+  describe('Create File', () =>
+  {
+    it('POST /storage', async() =>
+    {
       storageData = {
         exampleField: 'Example value'
         // Add test data for your entity
@@ -37,8 +42,10 @@ describe('File E2E', () => {
     });
   });
 
-  describe('Get File', () => {
-    it('GET /storage', async() => {
+  describe('Get File', () =>
+  {
+    it('GET /storage', async() =>
+    {
       const response = await agent.get('/api/storage');
 
       expect(response.status).toBe(200);
@@ -46,7 +53,8 @@ describe('File E2E', () => {
       expect(response.body.length).toBeGreaterThan(0);
     });
 
-    it('GET /storage/:id', async() => {
+    it('GET /storage/:id', async() =>
+    {
       const response = await agent.get(`/api/storage/${storageId}`);
 
       expect(response.status).toBe(200);
@@ -55,8 +63,10 @@ describe('File E2E', () => {
     });
   });
 
-  describe('Update File', () => {
-    it('PUT /storage/:id', async() => {
+  describe('Update File', () =>
+  {
+    it('PUT /storage/:id', async() =>
+    {
       const updateData = {
         exampleField: 'Updated value'
       };
@@ -68,8 +78,10 @@ describe('File E2E', () => {
     });
   });
 
-  describe('Delete File', () => {
-    it('DELETE /storage/:id', async() => {
+  describe('Delete File', () =>
+  {
+    it('DELETE /storage/:id', async() =>
+    {
       const response = await agent.delete(`/api/storage/${storageId}`);
 
       expect(response.status).toBe(204);

@@ -5,7 +5,8 @@ import { ListSymbolUseCase } from '../../Application/ListSymbolUseCase';
 import { SymbolDomain } from '../../Domain/Entities/SymbolDomain';
 
 @Controller('symbol')
-export class GetController {
+export class GetController
+{
   constructor(
     private readonly listSymbolUseCase: ListSymbolUseCase,
     private readonly getSymbolByIdUseCase: GetSymbolByIdUseCase
@@ -13,13 +14,15 @@ export class GetController {
 
   @Get()
   @HttpCode(HttpStatus.OK)
-  getAll(): Promise<SymbolDomain[]> {
+  getAll(): Promise<SymbolDomain[]>
+  {
     return this.listSymbolUseCase.execute();
   }
 
   @Get(':id')
   @HttpCode(HttpStatus.OK)
-  getById(@Param('id', ParseUUIDPipe) id: string): Promise<SymbolDomain> {
+  getById(@Param('id', ParseUUIDPipe) id: string): Promise<SymbolDomain>
+  {
     return this.getSymbolByIdUseCase.execute(id);
   }
 }

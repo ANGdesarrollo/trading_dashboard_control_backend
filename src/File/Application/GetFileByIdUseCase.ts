@@ -4,13 +4,16 @@ import { FileDomain } from '../Domain/Entities/FileDomain';
 import { FileRepository } from '../Infrastructure/FileRepository';
 
 @Injectable()
-export class GetFileByIdUseCase {
+export class GetFileByIdUseCase
+{
   constructor(private readonly repository: FileRepository) {}
 
-  async execute(id: string): Promise<FileDomain> {
+  async execute(id: string): Promise<FileDomain>
+  {
     const storage = await this.repository.findOneBy('id', id);
 
-    if (!storage) {
+    if (!storage)
+    {
       throw new NotFoundException(`Storage with id ${id} not found`);
     }
 

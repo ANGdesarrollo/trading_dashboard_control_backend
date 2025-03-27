@@ -5,13 +5,16 @@ import { SymbolRepository } from '../Infrastructure/SymbolRepository';
 import { UpdateSymbolDto } from '../Presentation/Dtos/UpdateSymbolDto';
 
 @Injectable()
-export class UpdateSymbolUseCase {
+export class UpdateSymbolUseCase
+{
   constructor(private readonly repository: SymbolRepository) {}
 
-  async execute(id: string, payload: UpdateSymbolDto): Promise<SymbolDomain> {
+  async execute(id: string, payload: UpdateSymbolDto): Promise<SymbolDomain>
+  {
     const symbol = await this.repository.findOneBy('id', id);
 
-    if (!symbol) {
+    if (!symbol)
+    {
       throw new NotFoundException(`Symbol with id ${id} not found`);
     }
 

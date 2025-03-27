@@ -11,7 +11,7 @@ import { OperationRepository } from './OperationRepository';
 export class OperationRepositoryImpl extends BasePrismaRepositoryImpl<OperationDto, OperationDomain> implements OperationRepository
 {
   constructor(prisma: PrismaService)
-{
+  {
     super(prisma, 'operation');
   }
 

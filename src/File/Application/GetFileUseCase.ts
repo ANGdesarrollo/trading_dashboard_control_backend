@@ -12,11 +12,11 @@ export class GetFileUseCase
   ) {}
 
   async execute(id: string): Promise<{ buffer: Buffer; fileName: string; mimeType: string }>
-{
+  {
     const storage = await this.repository.findOneBy('id', id);
 
     if (!storage)
-{
+    {
       throw new NotFoundException(`File with id ${id} not found`);
     }
 

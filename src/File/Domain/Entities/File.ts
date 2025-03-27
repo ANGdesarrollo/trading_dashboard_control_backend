@@ -1,4 +1,5 @@
-export class File {
+export class File
+{
   public id: string;
   public fileName: string;
   public originalName: string;
@@ -17,7 +18,8 @@ export class File {
     size: number,
     isPublic: boolean,
     url?: string
-  ) {
+  )
+  {
     this.id = id;
     this.fileName = fileName;
     this.originalName = originalName;

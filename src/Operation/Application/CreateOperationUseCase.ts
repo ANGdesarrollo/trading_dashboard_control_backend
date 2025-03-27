@@ -11,7 +11,7 @@ export class CreateOperationUseCase
   constructor(private readonly repository: OperationRepository) {}
 
   async execute(payload: OperationDto): Promise<OperationDomain>
-{
+  {
     return this.repository.create(payload);
   }
 }

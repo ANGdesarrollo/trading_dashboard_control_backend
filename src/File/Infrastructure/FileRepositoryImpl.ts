@@ -11,7 +11,7 @@ import { FileRepository } from './FileRepository';
 export class FileRepositoryImpl extends BasePrismaRepositoryImpl<FileDto, FileDomain> implements FileRepository
 {
   constructor(prisma: PrismaService)
-{
+  {
     super(prisma, 'file');
   }
 }

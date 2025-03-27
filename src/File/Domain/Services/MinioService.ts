@@ -19,7 +19,7 @@ export class MinioService implements OnModuleInit
   private readonly logger = new Logger(MinioService.name);
 
   constructor(private readonly configService: ConfigService)
-{
+  {
     this.client = new Minio.Client({
       endPoint: configService.get('MINIO_HOST', 'localhost'),
       port: parseInt(configService.get('MINIO_PORT', '9000'), 10),
@@ -32,26 +32,26 @@ export class MinioService implements OnModuleInit
   }
 
   async onModuleInit(): Promise<void>
-{
+  {
     await this.initBucket();
   }
 
   private async initBucket(): Promise<void>
-{
+  {
     // Check if bucket exists
     const exists = await this.client.bucketExists(this.bucketName)
       .catch(error =>
-{
+      {
         this.logger.error(`Error checking if bucket exists: ${error.message}`);
         throw error;
       });
 
     if (!exists)
-{
+    {
       // Create bucket if it doesn't exist
       await this.client.makeBucket(this.bucketName, 'us-east-1')
         .catch(error =>
-{
+        {
           this.logger.error(`Error creating bucket: ${error.message}`);
           throw error;
         });
@@ -75,15 +75,15 @@ export class MinioService implements OnModuleInit
         this.bucketName,
         JSON.stringify(publicPolicy)
       ).catch(error =>
-{
+      {
         this.logger.error(`Error setting bucket policy: ${error.message}`);
         throw error;
       });
 
       this.logger.log(`Public policy set for bucket '${this.bucketName}'`);
     }
- else
-{
+    else
+    {
       this.logger.log(`Bucket '${this.bucketName}' already exists`);
     }
   }
@@ -94,7 +94,7 @@ export class MinioService implements OnModuleInit
     metaData?: Minio.ItemBucketMetadata,
     isPublic = true
   ): Promise<string>
-{
+  {
     await this.client.putObject(
       this.bucketName,
       objectName,
@@ -102,14 +102,14 @@ export class MinioService implements OnModuleInit
       file.length,
       metaData
     ).catch(error =>
-{
+    {
       this.logger.error(`Error uploading file: ${error.message}`);
       throw error;
     });
 
     // Return the URL to the uploaded file or just the object name
     if (isPublic)
-{
+    {
       // Construct URL based on config values instead of accessing protected properties
       const protocol = this.configService.get('MINIO_USE_SSL', 'false') === 'true' ? 'https' : 'http';
       const host = this.configService.get('MINIO_HOST', 'localhost');
@@ -122,23 +122,23 @@ export class MinioService implements OnModuleInit
   }
 
   async getFile(objectName: string): Promise<Buffer>
-{
+  {
     const dataStream = await this.client.getObject(
       this.bucketName,
       objectName
     ).catch(error =>
-{
+    {
       this.logger.error(`Error getting file: ${error.message}`);
       throw error;
     });
 
     return new Promise((resolve, reject) =>
-{
+    {
       const chunks: Buffer[] = [];
       dataStream.on('data', (chunk) => chunks.push(chunk));
       dataStream.on('end', () => resolve(Buffer.concat(chunks)));
       dataStream.on('error', (err) =>
-{
+      {
         this.logger.error(`Error streaming file: ${err.message}`);
         reject(err);
       });
@@ -146,26 +146,26 @@ export class MinioService implements OnModuleInit
   }
 
   async deleteFile(objectName: string): Promise<void>
-{
+  {
     await this.client.removeObject(this.bucketName, objectName)
       .catch(error =>
-{
+      {
         this.logger.error(`Error deleting file: ${error.message}`);
         throw error;
       });
   }
 
   async listFiles(prefix?: string, recursive = true): Promise<ObjectInfo[]>
-{
+  {
     const files: ObjectInfo[] = [];
     const stream = this.client.listObjects(this.bucketName, prefix, recursive);
 
     return new Promise((resolve, reject) =>
-{
+    {
       stream.on('data', (obj: ObjectInfo) => files.push(obj));
       stream.on('end', () => resolve(files));
       stream.on('error', (err) =>
-{
+      {
         this.logger.error(`Error listing files: ${err.message}`);
         reject(err);
       });
@@ -173,17 +173,17 @@ export class MinioService implements OnModuleInit
   }
 
   getFileUrl(objectName: string, expiry = 60 * 60): Promise<string>
-{
+  {
     return this.client.presignedGetObject(this.bucketName, objectName, expiry)
       .catch(error =>
-{
+      {
         this.logger.error(`Error generating presigned URL: ${error.message}`);
         throw error;
       });
   }
 
   getPublicUrl(objectName: string): string
-{
+  {
     // Construct URL based on config values instead of accessing protected properties
     const protocol = this.configService.get('MINIO_USE_SSL', 'false') === 'true' ? 'https' : 'http';
     const host = this.configService.get('MINIO_HOST', 'localhost');
