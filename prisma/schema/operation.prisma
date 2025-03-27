@@ -1,4 +1,4 @@
-model Trading {
+model Operation {
   id          String    @id @default(uuid()) @db.Uuid
   symbol      String    @db.VarChar(10)
   type        TradeType
@@ -10,9 +10,8 @@ model Trading {
   created_at  DateTime  @default(now())
   updated_at  DateTime  @updatedAt
 
-  @@map("trading")
+  @@map("operation")
 }
-
 
 enum TradeType {
   LONG

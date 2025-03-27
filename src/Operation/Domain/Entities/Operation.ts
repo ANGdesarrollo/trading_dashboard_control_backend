@@ -1,6 +1,6 @@
-import { Result, TradeType } from './TradingDomain';
+import { Result, TradeType } from './OperationDomain';
 
-export class Trading
+export class Operation
 {
   public id: string;
   public symbol: string;

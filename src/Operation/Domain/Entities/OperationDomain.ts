@@ -11,7 +11,7 @@ export enum Result {
   BE = 'BE'
 }
 
-export interface TradingDomain extends BaseDomain {
+export interface OperationDomain extends BaseDomain {
   id: string;
   symbol: string;
   type: TradeType;

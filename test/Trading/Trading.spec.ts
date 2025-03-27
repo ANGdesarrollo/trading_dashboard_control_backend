@@ -1,22 +1,22 @@
-// test/Trading/Trading.spec.ts
+// test/Operation/Operation.spec.ts
 import { NestFastifyApplication } from '@nestjs/platform-fastify';
 import TestAgent from 'supertest/lib/agent';
 
-import { Result, TradeType } from '../../src/Trading/Domain/Entities/TradingDomain';
-import { TradingDto } from '../../src/Trading/Presentation/Dtos/TradingDto';
-import { TradingModule } from '../../src/Trading/TradingModule';
+import { Result, TradeType } from '../../src/Operation/Domain/Entities/OperationDomain';
+import { OperationDto } from '../../src/Operation/Presentation/Dtos/OperationDto';
+import { OperationModule } from '../../src/Operation/OperationModule';
 import { getTestAgent } from '../TestAgent';
 
 let agent: TestAgent;
 let app: NestFastifyApplication;
 let tradingId: string;
-let tradingData: TradingDto;
+let tradingData: OperationDto;
 
-describe('Trading E2E', () =>
+describe('Operation E2E', () =>
 {
   beforeAll(async() =>
   {
-    const testAgent = await getTestAgent(TradingModule);
+    const testAgent = await getTestAgent(OperationModule);
     agent = testAgent.agent;
     app = testAgent.app;
   });
@@ -26,7 +26,7 @@ describe('Trading E2E', () =>
     await app.close();
   });
 
-  describe('Create Trading', () =>
+  describe('Create Operation', () =>
   {
     it('POST /trading', async() =>
     {
@@ -48,7 +48,7 @@ describe('Trading E2E', () =>
     });
   });
 
-  describe('Get Trading', () =>
+  describe('Get Operation', () =>
   {
     it('GET /trading', async() =>
     {
@@ -69,7 +69,7 @@ describe('Trading E2E', () =>
     });
   });
 
-  describe('Update Trading', () =>
+  describe('Update Operation', () =>
   {
     it('PUT /trading/:id', async() =>
   {
@@ -86,7 +86,7 @@ describe('Trading E2E', () =>
     });
   });
 
-  describe('Delete Trading', () =>
+  describe('Delete Operation', () =>
   {
     it('DELETE /trading/:id', async() =>
     {

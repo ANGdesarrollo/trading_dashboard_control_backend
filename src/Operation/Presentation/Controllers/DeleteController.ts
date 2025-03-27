@@ -1,11 +1,11 @@
 import { Controller, Delete, HttpCode, HttpStatus, Param, ParseUUIDPipe } from '@nestjs/common';
 
-import { DeleteTradingUseCase } from '../../Application/DeleteTradingUseCase';
+import { DeleteOperationUseCase } from '../../Application/DeleteOperationUseCase';
 
 @Controller('trading')
 export class DeleteController
 {
-  constructor(private readonly deleteTradingUseCase: DeleteTradingUseCase) {}
+  constructor(private readonly deleteTradingUseCase: DeleteOperationUseCase) {}
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)

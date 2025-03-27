@@ -1,9 +1,9 @@
-// src/Trading/TradingModule.ts
+// src/Operation/OperationModule.ts
 import { Module } from '@nestjs/common';
 
 import { TradingUseCases } from './Application';
-import { TradingRepository } from './Infrastructure/TradingRepository';
-import { TradingRepositoryImpl } from './Infrastructure/TradingRepositoryImpl';
+import { OperationRepository } from './Infrastructure/OperationRepository';
+import { OperationRepositoryImpl } from './Infrastructure/OperationRepositoryImpl';
 import { GetController } from './Presentation/Controllers/GetController';
 import { PostController } from './Presentation/Controllers/PostController';
 import { PutController } from './Presentation/Controllers/PutController';
@@ -14,9 +14,9 @@ import { DeleteController } from './Presentation/Controllers/DeleteController';
   providers: [
     ...TradingUseCases,
     {
-      provide: TradingRepository,
-      useClass: TradingRepositoryImpl
+      provide: OperationRepository,
+      useClass: OperationRepositoryImpl
     }
   ]
 })
-export class TradingModule {}
+export class OperationModule {}

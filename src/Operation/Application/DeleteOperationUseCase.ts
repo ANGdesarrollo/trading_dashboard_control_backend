@@ -1,11 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 
-import { TradingRepository } from '../Infrastructure/TradingRepository';
+import { OperationRepository } from '../Infrastructure/OperationRepository';
 
 @Injectable()
-export class DeleteTradingUseCase
+export class DeleteOperationUseCase
 {
-  constructor(private readonly repository: TradingRepository) {}
+  constructor(private readonly repository: OperationRepository) {}
 
   async execute(id: string): Promise<void>
   {
