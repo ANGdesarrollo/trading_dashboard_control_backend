@@ -1,15 +1,18 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 
-import { StorageRepository } from '../Infrastructure/StorageRepository';
+import { FileRepository } from '../Infrastructure/FileRepository';
 
 @Injectable()
-export class DeleteStorageUseCase {
-  constructor(private readonly repository: StorageRepository) {}
+export class DeleteFileUseCase
+{
+  constructor(private readonly repository: FileRepository) {}
 
-  async execute(id: string): Promise<void> {
+  async execute(id: string): Promise<void>
+  {
     const storage = await this.repository.findOneBy('id', id);
 
-    if (!storage) {
+    if (!storage)
+  {
       throw new NotFoundException(`Storage with id ${id} not found`);
     }
 

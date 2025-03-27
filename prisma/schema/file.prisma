@@ -1,0 +1,14 @@
+model File {
+  id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  fileName     String   @db.VarChar(255)
+  originalName String   @db.VarChar(255)
+  path         String   @db.VarChar(255)
+  mimeType     String   @db.VarChar(100)
+  size         Int
+  isPublic     Boolean  @default(true)
+  url          String?  @db.VarChar(255)
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+
+  @@map("files")
+}

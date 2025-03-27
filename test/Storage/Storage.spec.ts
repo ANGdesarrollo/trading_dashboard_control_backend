@@ -1,19 +1,19 @@
-// test/Storage/Storage.spec.ts
+// test/File/File.spec.ts
 import { NestFastifyApplication } from '@nestjs/platform-fastify';
 import TestAgent from 'supertest/lib/agent';
 
-import { StorageDto } from '../../src/Storage/Presentation/Dtos/StorageDto';
-import { StorageModule } from '../../src/Storage/StorageModule';
+import { FileDto } from '../../src/File/Presentation/Dtos/FileDto';
+import { FileModule } from '../../src/File/FileModule';
 import { getTestAgent } from '../TestAgent';
 
 let agent: TestAgent;
 let app: NestFastifyApplication;
 let storageId: string;
-let storageData: StorageDto;
+let storageData: FileDto;
 
-describe('Storage E2E', () => {
+describe('File E2E', () => {
   beforeAll(async() => {
-    const testAgent = await getTestAgent(StorageModule);
+    const testAgent = await getTestAgent(FileModule);
     agent = testAgent.agent;
     app = testAgent.app;
   });
@@ -22,7 +22,7 @@ describe('Storage E2E', () => {
     await app.close();
   });
 
-  describe('Create Storage', () => {
+  describe('Create File', () => {
     it('POST /storage', async() => {
       storageData = {
         exampleField: 'Example value'
@@ -37,7 +37,7 @@ describe('Storage E2E', () => {
     });
   });
 
-  describe('Get Storage', () => {
+  describe('Get File', () => {
     it('GET /storage', async() => {
       const response = await agent.get('/api/storage');
 
@@ -55,7 +55,7 @@ describe('Storage E2E', () => {
     });
   });
 
-  describe('Update Storage', () => {
+  describe('Update File', () => {
     it('PUT /storage/:id', async() => {
       const updateData = {
         exampleField: 'Updated value'
@@ -68,7 +68,7 @@ describe('Storage E2E', () => {
     });
   });
 
-  describe('Delete Storage', () => {
+  describe('Delete File', () => {
     it('DELETE /storage/:id', async() => {
       const response = await agent.delete(`/api/storage/${storageId}`);
 

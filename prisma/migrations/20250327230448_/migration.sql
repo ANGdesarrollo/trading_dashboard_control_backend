@@ -5,6 +5,22 @@ CREATE TYPE "TradeType" AS ENUM ('LONG', 'SHORT');
 CREATE TYPE "Result" AS ENUM ('WON', 'LOST', 'BE');
 
 -- CreateTable
+CREATE TABLE "files" (
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "fileName" VARCHAR(255) NOT NULL,
+    "originalName" VARCHAR(255) NOT NULL,
+    "path" VARCHAR(255) NOT NULL,
+    "mimeType" VARCHAR(100) NOT NULL,
+    "size" INTEGER NOT NULL,
+    "isPublic" BOOLEAN NOT NULL DEFAULT true,
+    "url" VARCHAR(255),
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "files_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "operation" (
     "id" UUID NOT NULL,
     "symbolId" UUID NOT NULL,
