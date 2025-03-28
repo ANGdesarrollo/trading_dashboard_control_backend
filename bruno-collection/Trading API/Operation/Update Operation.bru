@@ -1,0 +1,24 @@
+meta {
+  name: Update Operation
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/trading/{{operationId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}
+
+body:json {
+  {
+    "pips": 75,
+    "result": "WON",
+    "description": "Updated description with more details"
+  }
+}

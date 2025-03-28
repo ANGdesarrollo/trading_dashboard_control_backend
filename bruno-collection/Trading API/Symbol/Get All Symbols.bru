@@ -1,0 +1,16 @@
+meta {
+  name: Get All Symbols
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/symbol
+  body: none
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}

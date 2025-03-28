@@ -1,0 +1,16 @@
+meta {
+  name: Get Operation By ID
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/trading/{{operationId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}

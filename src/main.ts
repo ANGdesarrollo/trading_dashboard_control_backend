@@ -35,7 +35,7 @@ async function bootstrap()
     }
   });
 
-  await app.listen(PORT, '0.0.0.0');
+  await app.listen(PORT);
 
   Logger.log(`🚀 Server is running on port ${PORT}`);
 }

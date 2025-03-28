@@ -1,0 +1,22 @@
+meta {
+  name: Update Symbol
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/symbol/{{symbolId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}
+
+body:json {
+  {
+    "name": "GBPUSD"
+  }
+}

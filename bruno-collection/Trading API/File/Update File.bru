@@ -1,0 +1,22 @@
+meta {
+  name: Update File
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/file/{{fileId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}
+
+body:json {
+  {
+    "isPublic": false
+  }
+}

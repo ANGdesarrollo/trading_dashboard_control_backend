@@ -1,0 +1,22 @@
+meta {
+  name: Create Symbol
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/symbol
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}
+
+body:json {
+  {
+    "name": "EURUSD"
+  }
+}

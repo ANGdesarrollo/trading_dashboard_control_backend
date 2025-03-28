@@ -1,0 +1,15 @@
+meta {
+  name: Delete Operation
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/trading/{{operationId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
