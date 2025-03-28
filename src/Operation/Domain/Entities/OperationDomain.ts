@@ -1,26 +1,29 @@
+import { FileDomain } from '../../../File/Domain/Entities/FileDomain';
 import { BaseDomain } from '../../../Shared/Domain/Repositories/BaseDomain';
+import { SymbolDomain } from '../../../Symbol/Domain/Entities/SymbolDomain';
 
-export enum TradeType {
+export enum TradeType
+{
   LONG = 'LONG',
   SHORT = 'SHORT'
 }
 
-export enum Result {
+export enum Result
+{
   WON = 'WON',
   LOST = 'LOST',
   BE = 'BE'
 }
 
-export interface OperationDomain extends BaseDomain {
+export interface OperationDomain extends BaseDomain
+{
   id: string;
   symbolId: string;
-  symbol?: {
-    id: string;
-    name: string;
-  };
+  symbol?: SymbolDomain;
+  fileId: string;
+  file?: FileDomain;
   type: TradeType;
   pips: number;
-  imagePath: string;
   result: Result;
   description?: string;
   date: Date;

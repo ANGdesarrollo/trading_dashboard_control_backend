@@ -21,7 +21,14 @@ export class OperationRepositoryImpl extends BasePrismaRepositoryImpl<OperationD
     {
       return await this.repository[this.entityName].findMany({
         include: {
-          symbol: true
+          symbol: true,
+          file: {
+            select: {
+              id: true,
+              fileName: true,
+              url: true
+            }
+          }
         }
       });
     }
@@ -40,7 +47,14 @@ export class OperationRepositoryImpl extends BasePrismaRepositoryImpl<OperationD
           [fieldName]: fieldValue
         },
         include: {
-          symbol: true
+          symbol: true,
+          file: {
+            select: {
+              id: true,
+              fileName: true,
+              url: true
+            }
+          }
         }
       });
     }

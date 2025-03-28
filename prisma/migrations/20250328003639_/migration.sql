@@ -24,9 +24,9 @@ CREATE TABLE "files" (
 CREATE TABLE "operation" (
     "id" UUID NOT NULL,
     "symbolId" UUID NOT NULL,
+    "fileId" UUID NOT NULL,
     "type" "TradeType" NOT NULL,
     "pips" INTEGER NOT NULL,
-    "imagePath" VARCHAR(255) NOT NULL,
     "result" "Result" NOT NULL,
     "description" VARCHAR(255),
     "date" TIMESTAMP(3) NOT NULL,
@@ -138,6 +138,9 @@ CREATE INDEX "_user_tenants_B_index" ON "_user_tenants"("B");
 
 -- AddForeignKey
 ALTER TABLE "operation" ADD CONSTRAINT "operation_symbolId_fkey" FOREIGN KEY ("symbolId") REFERENCES "symbols"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "operation" ADD CONSTRAINT "operation_fileId_fkey" FOREIGN KEY ("fileId") REFERENCES "files"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_role_permissions" ADD CONSTRAINT "_role_permissions_A_fkey" FOREIGN KEY ("A") REFERENCES "permissions"("id") ON DELETE CASCADE ON UPDATE CASCADE;

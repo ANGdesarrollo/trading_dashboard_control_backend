@@ -1,9 +1,9 @@
 model Operation {
   id          String    @id @default(uuid()) @db.Uuid
   symbolId    String    @db.Uuid
+  fileId      String    @db.Uuid
   type        TradeType
   pips        Int
-  imagePath   String    @db.VarChar(255)
   result      Result
   description String?   @db.VarChar(255)
   date        DateTime
@@ -11,6 +11,7 @@ model Operation {
   updated_at  DateTime  @updatedAt
 
   symbol      Symbol    @relation(fields: [symbolId], references: [id])
+  file        File      @relation(fields: [fileId], references: [id])
 
   @@map("operation")
 }
