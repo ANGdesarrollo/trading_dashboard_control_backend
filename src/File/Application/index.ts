@@ -1,4 +1,3 @@
-// src/File/Application/index.ts
 import { DeleteFileUseCase } from './DeleteFileUseCase';
 import { GetFileByIdUseCase } from './GetFileByIdUseCase';
 import { ListFileUseCase } from './ListFileUseCase';
