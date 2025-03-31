@@ -9,11 +9,11 @@ export class DeleteOperationUseCase
 
   async execute(id: string): Promise<void>
   {
-    const trading = await this.repository.findOneBy('id', id);
+    const operation = await this.repository.findOneBy('id', id);
 
-    if (!trading)
+    if (!operation)
     {
-      throw new NotFoundException(`Trading with id ${id} not found`);
+      throw new NotFoundException(`Operation with id ${id} not found`);
     }
 
     await this.repository.delete(id);

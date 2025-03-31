@@ -4,10 +4,10 @@ import { UpdateOperationUseCase } from '../../Application/UpdateOperationUseCase
 import { OperationDomain } from '../../Domain/Entities/OperationDomain';
 import { UpdateOperationDto } from '../Dtos/UpdateOperationDto';
 
-@Controller('trading')
+@Controller('operation')
 export class PutController
 {
-  constructor(private readonly updateTradingUseCase: UpdateOperationUseCase) {}
+  constructor(private readonly updateOperationUseCase: UpdateOperationUseCase) {}
 
   @Put(':id')
   @HttpCode(HttpStatus.OK)
@@ -16,6 +16,6 @@ export class PutController
     @Body() body: UpdateOperationDto
   ): Promise<OperationDomain>
   {
-    return this.updateTradingUseCase.execute(id, body);
+    return this.updateOperationUseCase.execute(id, body);
   }
 }

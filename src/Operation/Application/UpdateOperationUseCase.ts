@@ -11,11 +11,11 @@ export class UpdateOperationUseCase
 
   async execute(id: string, payload: UpdateOperationDto): Promise<OperationDomain>
   {
-    const trading = await this.repository.findOneBy('id', id);
+    const operation = await this.repository.findOneBy('id', id);
 
-    if (!trading)
+    if (!operation)
     {
-      throw new NotFoundException(`Trading with id ${id} not found`);
+      throw new NotFoundException(`Operation with id ${id} not found`);
     }
 
     return this.repository.update(id, payload);

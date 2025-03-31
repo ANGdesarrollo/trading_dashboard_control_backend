@@ -4,15 +4,15 @@ import { CreateOperationUseCase } from '../../Application/CreateOperationUseCase
 import { OperationDomain } from '../../Domain/Entities/OperationDomain';
 import { OperationDto } from '../Dtos/OperationDto';
 
-@Controller('trading')
+@Controller('operation')
 export class PostController
 {
-  constructor(private readonly createTradingUseCase: CreateOperationUseCase) {}
+  constructor(private readonly createOperationUseCase: CreateOperationUseCase) {}
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
   create(@Body() body: OperationDto): Promise<OperationDomain>
   {
-    return this.createTradingUseCase.execute(body);
+    return this.createOperationUseCase.execute(body);
   }
 }

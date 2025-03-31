@@ -4,25 +4,25 @@ import { GetOperationByIdUseCase } from '../../Application/GetOperationByIdUseCa
 import { ListOperationUseCase } from '../../Application/ListOperationUseCase';
 import { OperationDomain } from '../../Domain/Entities/OperationDomain';
 
-@Controller('trading')
+@Controller('operation')
 export class GetController
 {
   constructor(
-    private readonly listTradingUseCase: ListOperationUseCase,
-    private readonly getTradingByIdUseCase: GetOperationByIdUseCase
+    private readonly listOperationUseCase: ListOperationUseCase,
+    private readonly getOperationByIdUseCase: GetOperationByIdUseCase
   ) {}
 
   @Get()
   @HttpCode(HttpStatus.OK)
   getAll(): Promise<OperationDomain[]>
   {
-    return this.listTradingUseCase.execute();
+    return this.listOperationUseCase.execute();
   }
 
   @Get(':id')
   @HttpCode(HttpStatus.OK)
   getById(@Param('id', ParseUUIDPipe) id: string): Promise<OperationDomain>
   {
-    return this.getTradingByIdUseCase.execute(id);
+    return this.getOperationByIdUseCase.execute(id);
   }
 }

@@ -2,15 +2,15 @@ import { Controller, Delete, HttpCode, HttpStatus, Param, ParseUUIDPipe } from '
 
 import { DeleteOperationUseCase } from '../../Application/DeleteOperationUseCase';
 
-@Controller('trading')
+@Controller('operation')
 export class DeleteController
 {
-  constructor(private readonly deleteTradingUseCase: DeleteOperationUseCase) {}
+  constructor(private readonly deleteOperationUseCase: DeleteOperationUseCase) {}
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
   delete(@Param('id', ParseUUIDPipe) id: string): Promise<void>
   {
-    return this.deleteTradingUseCase.execute(id);
+    return this.deleteOperationUseCase.execute(id);
   }
 }

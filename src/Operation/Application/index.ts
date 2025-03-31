@@ -5,7 +5,7 @@ import { GetOperationByIdUseCase } from './GetOperationByIdUseCase';
 import { ListOperationUseCase } from './ListOperationUseCase';
 import { UpdateOperationUseCase } from './UpdateOperationUseCase';
 
-export const TradingUseCases = [
+export const OperationUseCases = [
   CreateOperationUseCase,
   ListOperationUseCase,
   GetOperationByIdUseCase,
