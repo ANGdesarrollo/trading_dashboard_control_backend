@@ -17,6 +17,7 @@ export class MinioService implements OnModuleInit
   private readonly client: Minio.Client;
   private readonly bucketName: string;
   private readonly logger = new Logger(MinioService.name);
+  private readonly publicBaseUrl: string;
 
   constructor(private readonly configService: ConfigService)
   {
@@ -29,6 +30,19 @@ export class MinioService implements OnModuleInit
     });
 
     this.bucketName = configService.get('MINIO_BUCKET_NAME', 'default-bucket');
+    
+    // Usar una variable de entorno específica para la URL base pública
+    // Si MINIO_PUBLIC_URL no está definida, se construirá con host, puerto, etc.
+    this.publicBaseUrl = configService.get('MINIO_PUBLIC_URL') || this.buildDefaultPublicUrl();
+    this.logger.log(`Using public base URL: ${this.publicBaseUrl}`);
+  }
+  
+  private buildDefaultPublicUrl(): string {
+    const protocol = this.configService.get('MINIO_USE_SSL', 'false') === 'true' ? 'https' : 'http';
+    const host = this.configService.get('MINIO_HOST', 'localhost');
+    const port = this.configService.get('MINIO_PORT', '9000');
+    
+    return `${protocol}://${host}:${port}`;
   }
 
   async onModuleInit(): Promise<void>
@@ -110,12 +124,7 @@ export class MinioService implements OnModuleInit
     // Return the URL to the uploaded file or just the object name
     if (isPublic)
     {
-      // Construct URL based on config values instead of accessing protected properties
-      const protocol = this.configService.get('MINIO_USE_SSL', 'false') === 'true' ? 'https' : 'http';
-      const host = this.configService.get('MINIO_HOST', 'localhost');
-      const port = this.configService.get('MINIO_PORT', '9000');
-
-      return `${protocol}://${host}:${port}/${this.bucketName}/${objectName}`;
+      return `${this.publicBaseUrl}/${this.bucketName}/${objectName}`;
     }
 
     return objectName;
@@ -184,11 +193,6 @@ export class MinioService implements OnModuleInit
 
   getPublicUrl(objectName: string): string
   {
-    // Construct URL based on config values instead of accessing protected properties
-    const protocol = this.configService.get('MINIO_USE_SSL', 'false') === 'true' ? 'https' : 'http';
-    const host = this.configService.get('MINIO_HOST', 'localhost');
-    const port = this.configService.get('MINIO_PORT', '9000');
-
-    return `${protocol}://${host}:${port}/${this.bucketName}/${objectName}`;
+    return `${this.publicBaseUrl}/${this.bucketName}/${objectName}`;
   }
 }
